@@ -7,7 +7,7 @@ async function registerUser(email, password, name) {
         // Creating a new user with a unique ID, email, password, and name
         let CreatedUser = await account.create("unique()", email, password, name)
         console.log(email);
-        
+
         if (!CreatedUser) {
             throw new Error("Failed to create user");
         }
@@ -20,4 +20,14 @@ async function registerUser(email, password, name) {
     }
 }
 
-export { registerUser }
+// Login function to authenticate a user with email and password
+async function LoginUser(email, password) {
+    console.log("Yep i'm login");
+}
+
+// Gets the current authenticated user
+async function getCurrentUser() {
+    console.log("Get Current User Methord");
+}
+
+export { registerUser, LoginUser, getCurrentUser }
