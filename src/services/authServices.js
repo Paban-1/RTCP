@@ -1,3 +1,4 @@
+import { LogIn } from "lucide-react";
 import { account, databases } from "../Main/appwrite";
 
 // Registers a new user with the provided email and password
@@ -5,6 +6,8 @@ async function registerUser(email, password, name) {
     try {
         // Creating a new user with a unique ID, email, password, and name
         let CreatedUser = await account.create("unique()", email, password, name)
+        console.log(email);
+        
         if (!CreatedUser) {
             throw new Error("Failed to create user");
         }
@@ -16,3 +19,5 @@ async function registerUser(email, password, name) {
         throw new Error(error.message || "An unexpected error occurred during registration");
     }
 }
+
+export { registerUser }

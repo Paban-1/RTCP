@@ -1,9 +1,10 @@
 import React from 'react'
+import { Register, RegisterPage } from "./constent"
 
 const App = () => {
   return (
     <div>
-      <p className='text-red-400'>jdkakdfjalkjj</p>
+      <RegisterPage />
     </div>
   )
 }
