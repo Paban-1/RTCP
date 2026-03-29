@@ -1,6 +1,6 @@
 // Import necessary modules from React
 import { createContext, useState, useEffect, useContext } from "react";
-import { LoginUser, registerUser, getCurrentUser } from "../services/authServices"
+import { loginUser, registerUser, getCurrentUser } from "../services/authServices"
 
 // Create the AuthContext
 const AuthContext = createContext()
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
     // Login function to authenticate a user with email and password
     const login = async (data) => {
         try {
-            const res = await LoginUser(data)
+            const res = await loginUser(data)
             setUser(res)
         } catch (error) {
             throw error
