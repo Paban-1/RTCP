@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
-import { registerUser } from "../services/authServices.js"
+// import { registerUser } from "../services/authServices.js"
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/authContext.jsx"
 
 const RegisterPage = () => {
+    const { register } = useAuth()
+
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -32,7 +35,7 @@ const RegisterPage = () => {
             if (error) setError("")
             if (success) setSuccess("")
 
-            await registerUser(
+            await register(
                 email.trim().toLowerCase(),
                 password.trim(),
                 name.trim()

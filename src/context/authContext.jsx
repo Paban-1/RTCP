@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
     }, [])
 
     // 🔐 Register + auto login
-    const register = async (name, email, password) => {
+    const register = async (email, password, name) => {
         try {
             await registerUser(email, password, name)
 
