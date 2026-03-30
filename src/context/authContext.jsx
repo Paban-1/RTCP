@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
 
-    // 🔄 Auto-login (runs on app start)
+    // Auto-login (runs on app start)
     useEffect(() => {
         async function loadUser() {
             try {
