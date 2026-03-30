@@ -1,11 +1,12 @@
 import React from 'react'
-import { Register, RegisterPage } from "./constent"
+import {  RegisterPage, Navbar, ContactBar, ProfileBar, AppRouter } from "./constent"
+import { AuthProvider } from "./context/authContext"
 
 const App = () => {
   return (
-    <div>
-      <RegisterPage />
-    </div>
+    <AuthProvider>
+      <AppRouter />
+    </AuthProvider>
   )
 }
 
