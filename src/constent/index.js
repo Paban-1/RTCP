@@ -8,8 +8,9 @@ import LoginPage from "../components/LoginPage"
 import TestDefult from "../components/TestDefult"
 import Dashboard from "../UI/Dashboard"
 
-export { RegisterPage, Navbar, ContactBar, ProfileBar, AppRouter, LoginPage ,TestDefult, Dashboard}
+export { RegisterPage, Navbar, ContactBar, ProfileBar, AppRouter, LoginPage, TestDefult, Dashboard }
 
-import { MessageCircle } from "lucide-react";
 
-export { MessageCircle }
+// import icons from lucide-react
+import { Mail, Lock, ArrowRight, MessageCircle } from "lucide-react";
+export { Mail, Lock, ArrowRight, MessageCircle }
