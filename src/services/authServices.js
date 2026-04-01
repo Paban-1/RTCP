@@ -33,7 +33,7 @@ async function loginUser(email, password) {
 async function logoutUser() {
     try {
         // Deleting the current session to log the user out
-        await account.deleteSession("current")
+        await account.deleteSession({sessionId: 'current'})
         return true
     } catch (error) {
         // Log the error for debugging purposes
