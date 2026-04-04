@@ -1,12 +1,12 @@
 import React from 'react'
-import {  RegisterPage, Navbar, ContactBar, ProfileBar, AppRouter } from "./constent"
-import { AuthProvider } from "./context/authContext"
+// import "./index.css"
+import Room from './pages/Room'
 
 const App = () => {
   return (
-    <AuthProvider>
-      <AppRouter />
-    </AuthProvider>
+    <>
+      <Room />
+    </>
   )
 }
 
