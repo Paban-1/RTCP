@@ -23,7 +23,7 @@ const LoginPage = () => {
         let value = e.target.value
 
         setCredentils({ ...credentials, [name]: value })
-        console.log(credentials);
+    
     }
     return (
         <div className='auth--container'>
