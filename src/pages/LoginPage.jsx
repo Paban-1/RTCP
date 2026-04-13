@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../utils/AuthContext.jsx'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
     const { user, handleUserLogin } = useAuth()
@@ -23,7 +23,7 @@ const LoginPage = () => {
         let value = e.target.value
 
         setCredentils({ ...credentials, [name]: value })
-    
+
     }
     return (
         <div className='auth--container'>
@@ -52,6 +52,7 @@ const LoginPage = () => {
                         <input className='btn btn--lg btn--main' type="submit" value="Login" />
                     </div>
                 </form>
+                <p>Don't have an account? Register <Link to="/register">here</Link></p>
             </div>
         </div>
     )
