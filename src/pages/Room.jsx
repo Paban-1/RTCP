@@ -3,6 +3,7 @@ import client, { databases } from '../config/appwriteConfig.js'
 import config from '../crediantials/config.js'
 import { ID, Query } from 'appwrite'
 import { Trash2 } from "react-feather"
+import Header from '../components/Header.jsx'
 
 
 const Room = () => {
@@ -71,6 +72,7 @@ const Room = () => {
 
     return (
         <main className='container'>
+                <Header />
             <div className='room--container'>
 
                 <form id='message--form' onSubmit={handleSubmit}>
