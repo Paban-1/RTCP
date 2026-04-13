@@ -43,9 +43,16 @@ export const AuthProvider = ({ children }) => {
             console.log(error);
         }
     }
+
+    const handleUserLogout = async () => {
+        await account.deleteSession('current')
+        setUser(null)
+    }
+
     const contextData = {
         user,
-        handleUserLogin
+        handleUserLogin,
+        handleUserLogout
     }
 
     return <AuthContext.Provider value={contextData}>

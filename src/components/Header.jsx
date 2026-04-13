@@ -3,20 +3,20 @@ import { LogIn, LogOut } from 'lucide-react'
 import { useAuth } from '../utils/AuthContext'
 
 const Header = () => {
-    const { user } = useAuth()
+    const { user, handleUserLogout } = useAuth()
     // console.log(user);
-    
+
     return (
         <div id='header--wrapper'>
             {user ? (
                 <>
                     Walcome {user.name}
-                    {/* <LogOut className='header--link' /> log */}
+                    <LogOut className='header--link' onClick={handleUserLogout} />
                 </>
             ) : (
                 <>
                     <button>
-                        <LogIn /> Login
+                        <LogIn />
                     </button>
                 </>
             )}
