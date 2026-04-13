@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const RegisterPage = () => {
-    return (
-        <div>fsfsahl
 
+    const [credentials, setCredentials] = useState({
+        email: "",
+        password1: "",
+        password2: ""
+    })
+    return (
+        <div>
         </div>
     )
 }
