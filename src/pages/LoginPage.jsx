@@ -6,7 +6,7 @@ const LoginPage = () => {
     const { user, handleUserLogin } = useAuth()
     const navigate = useNavigate()
 
-    const [credentials, setCredentils] = useState({
+    const [credentials, setCredentials] = useState({
         email: "",
         password: ""
     })
@@ -22,8 +22,7 @@ const LoginPage = () => {
         let name = e.target.name
         let value = e.target.value
 
-        setCredentils({ ...credentials, [name]: value })
-
+        setCredentials({ ...credentials, [name]: value })
     }
     return (
         <div className='auth--container'>
