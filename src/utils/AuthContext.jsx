@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect, useContext } from 'react'
-import { account } from '../config/appwriteConfig'
+import { account, } from '../config/appwriteConfig'
 import { useNavigate } from 'react-router-dom'
+import { ID } from "appwrite"
 
 const AuthContext = createContext()
 
@@ -21,7 +22,7 @@ export const AuthProvider = ({ children }) => {
             // console.log("Fetched user:", accountDetails);
             // console.log("User :", user)
         } catch (error) {
-            console.error("Error fetching user on load:", error);
+            console.info("Error fetching user on load:", error);
         }
         setLoading(false)
     }
@@ -49,10 +50,39 @@ export const AuthProvider = ({ children }) => {
         setUser(null)
     }
 
+    const handleUserRegister = async (e, credentials) => {
+        e.preventDefault()
+
+        if (credentials.password1 !== credentials.password2) {
+            alert("Passwords do not match!")
+            return
+        }
+
+        try {
+            let response = await account.create(
+                ID.unique(),
+                credentials.email,
+                credentials.password1,
+                credentials.name,
+            )
+            await account.createEmailPasswordSession(
+                credentials.email,
+                credentials.password1
+            )
+            // console.log("REGISTER", response);
+            const accountDetails = await account.get()
+            setUser(accountDetails)
+            navigate('/')
+        } catch (error) {
+            console.error("Error registering user:", error)
+        }
+    }
+
     const contextData = {
         user,
         handleUserLogin,
-        handleUserLogout
+        handleUserLogout,
+        handleUserRegister
     }
 
     return <AuthContext.Provider value={contextData}>
