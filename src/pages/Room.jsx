@@ -4,10 +4,12 @@ import config from '../crediantials/config.js'
 import { ID, Query } from 'appwrite'
 import { Trash2 } from "react-feather"
 import Header from '../components/Header.jsx'
+import { useAuth } from '../utils/AuthContext.jsx'
 
 
 const Room = () => {
 
+    const { user } = useAuth()
     const [messages, setMessages] = useState([])
     const [meaasgeBody, setMessageBody] = useState("")
 
@@ -37,7 +39,9 @@ const Room = () => {
         e.preventDefault()
 
         let payload = {
-            body: meaasgeBody
+            user_id: user.$id,
+            username: user.name,
+            body: meaasgeBody,
         }
 
         let response = await databases.createDocument(
@@ -72,7 +76,7 @@ const Room = () => {
 
     return (
         <main className='container'>
-                <Header />
+            <Header />
             <div className='room--container'>
 
                 <form id='message--form' onSubmit={handleSubmit}>
@@ -93,7 +97,16 @@ const Room = () => {
                     {messages.map((message) => (
                         <div key={message.$id} className='message--wrapper'>
                             <div className='message--header'>
-                                <small className='message-timestamp'>{new Date(message.$createdAt).toLocaleString()}</small>
+
+                                <p>
+                                    {message?.username ? (
+                                        <span>{message.username}</span>
+                                    ) : (
+                                        <span>Unknown User</span>
+                                    )}
+
+                                    <small className='message-timestamp'>{new Date(message.$createdAt).toLocaleString()}</small>
+                                </p>
 
                                 <Trash2
                                     className='delete--btn'
