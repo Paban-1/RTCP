@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import client, { databases } from '../config/appwriteConfig.js'
 import config from '../crediantials/config.js'
-import { ID, Query } from 'appwrite'
+import { ID, Query, Role, Permission } from 'appwrite'
 import { Trash2 } from "react-feather"
 import Header from '../components/Header.jsx'
 import { useAuth } from '../utils/AuthContext.jsx'
@@ -44,12 +44,19 @@ const Room = () => {
             body: meaasgeBody,
         }
 
+        let permissions = [
+            Permission.write(Role.user(user.$id))
+        ]
+
         let response = await databases.createDocument(
             config.APPWRITE_DATABASE_ID,
             config.APPWRITE_COLLECTION_ID,
             ID.unique(),
-            payload
+            payload,
+            permissions
         )
+
+
 
         console.log("creted ", response);
 
@@ -108,9 +115,14 @@ const Room = () => {
                                     <small className='message-timestamp'>{new Date(message.$createdAt).toLocaleString()}</small>
                                 </p>
 
-                                <Trash2
-                                    className='delete--btn'
-                                    onClick={() => { deleteMessage(message.$id) }} />
+                                {message.$permissions.includes(`delete("user:${user.$id}\")`) && (
+                                    
+                                    <Trash2
+                                        className='delete--btn'
+                                        onClick={() => { deleteMessage(message.$id) }} />
+                                )}
+
+
                             </div>
 
                             <div className='message--body'>
